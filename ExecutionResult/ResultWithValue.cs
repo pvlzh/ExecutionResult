@@ -120,7 +120,7 @@ public record class Result<TValue, TError> where TError : Error
     /// <returns> Returns the result value if <see cref="IsSuccess"/>, otherwise returns the passed <see cref="defaultValue"/></returns>
     public TValue UnwrapOr(TValue defaultValue)
     {
-        return IsFailure ? defaultValue : Value;
+        return IsSuccess ? Value : defaultValue;
     }
     
     /// <summary>
@@ -129,7 +129,7 @@ public record class Result<TValue, TError> where TError : Error
     /// <returns> Returns the result value if <see cref="IsSuccess"/>, otherwise returns the passed <see cref="defaultValue"/></returns>
     public TValue UnwrapOr(Func<Error, TValue> defaultValue)
     {
-        return IsFailure ? defaultValue(Error) : Value;
+        return IsSuccess ? Value : defaultValue(Error);
     }
     
     /// <summary>
@@ -138,7 +138,7 @@ public record class Result<TValue, TError> where TError : Error
     /// <returns> Returns the result value if <see cref="IsSuccess"/>, otherwise returns default of type <see cref="TValue"/>></returns>
     public TValue? UnwrapOrDefault()
     {
-        return IsFailure ? default(TValue) : Value;
+        return IsSuccess ? Value : default;
     }
 
     /// <summary>

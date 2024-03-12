@@ -89,7 +89,7 @@ public record class Option<TValue>
     /// <returns> Returns the result value if <see cref="HasValue"/>, otherwise returns the passed <see cref="defaultValue"/></returns>
     public TValue UnwrapOr(TValue defaultValue)
     {
-        return !HasValue ? defaultValue : Value;
+        return HasValue ? Value : defaultValue;
     }
     
     /// <summary>
@@ -98,7 +98,7 @@ public record class Option<TValue>
     /// <returns> Returns the result value if <see cref="HasValue"/>, otherwise returns default of type <see cref="TValue"/>></returns>
     public TValue? UnwrapOrDefault()
     {
-        return !HasValue ? default(TValue) : Value;
+        return HasValue ? Value : default;
     }
     
     /// <summary>
