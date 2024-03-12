@@ -7,14 +7,13 @@ namespace ExecutionResult;
 /// An optional result that does not contain an error.
 /// </summary>
 /// <typeparam name="TValue"> Тип результата.</typeparam>
-public readonly record struct Option<TValue>
-    where TValue : class
+public record class Option<TValue>
 {
     /// <summary>
     /// Result.
     /// </summary>
-    public TValue? Value { get; } = default;
-    
+    public TValue? Value { get; }
+
     /// <summary>
     /// The result has been assigned and is not equal to default.
     /// </summary>
@@ -22,12 +21,19 @@ public readonly record struct Option<TValue>
     public bool HasValue { get; }
 
     /// <inheritdoc cref="Option{TValue}"/>
-    private Option(TValue? value)
+    private Option()
+    {
+        Value = default;
+        HasValue = false;
+    }
+
+    /// <inheritdoc cref="Option{TValue}"/>
+    private Option(TValue value)
     {
         Value = value;
-        HasValue = Value != default;
+        HasValue = true;
     }
-    
+
     /// <summary>
     /// Unwrap the value of an optional result.
     /// </summary>
@@ -95,22 +101,44 @@ public readonly record struct Option<TValue>
         return !HasValue ? default(TValue) : Value;
     }
     
+    /// <summary>
+    /// Mapping values, depending on the result.
+    /// </summary>
+    /// <param name="someMapping"> Mapping the value if the optional result has value.</param>
+    /// <param name="noneMapping"> Mapping the value if the optional result not contain value.</param>
+    /// <typeparam name="TMappedValue"> Type of mapping result.</typeparam>
+    /// <returns> Mapping result.</returns>
+    public TMappedValue Map<TMappedValue>(Func<TValue, TMappedValue> someMapping, Func<TMappedValue> noneMapping)
+    {
+        return HasValue ? someMapping(Value) : noneMapping();
+    }
 
     /// <summary>
     /// Initialize the result with value.
     /// </summary>
     /// <param name="value"> Value of an optional result.</param>
     /// <returns> Optional result with value.</returns>
-    public static Option<TValue> Some(TValue value) => new (value);
-    
+    public static Option<TValue> Some(TValue value)
+    {
+        if (value == null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        return new Option<TValue>(value);
+    }
+
     /// <summary>
     /// Initialize the result without value.
     /// </summary>
     /// <returns> Optional result without value.</returns>
-    public static Option<TValue> None() => new (default);
+    public static Option<TValue> None()
+    {
+        return new Option<TValue>();
+    }
     
     public static implicit operator Option<TValue>(TValue value) => new (value);
 
     /// <inheritdoc />
-    public override string ToString() => $"Optional result {(HasValue ? "has value." : "has no value.")}";
+    public override string ToString() => $"Optional result {(HasValue ? "has value." : "not contain value.")}";
 }

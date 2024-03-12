@@ -8,18 +8,17 @@ namespace ExecutionResult;
 /// </summary>
 /// <typeparam name="TValue"> Result value type.</typeparam>
 /// <typeparam name="TError"> Result error type.</typeparam>
-public readonly record struct Result<TValue, TError>
-    where TError : Error
+public record class Result<TValue, TError> where TError : Error
 {
     /// <summary>
     /// Result value.
     /// </summary>
-    public TValue? Value { get; }
-    
+    public TValue? Value { get; } = default;
+
     /// <summary>
     /// Result error.
     /// </summary>
-    public TError? Error { get; }
+    public TError? Error { get; } = default;
     
     /// <summary>
     /// Result is success.
@@ -36,17 +35,16 @@ public readonly record struct Result<TValue, TError>
     public bool IsFailure => !IsSuccess;
 
     /// <inheritdoc cref="Result{TValue, TError}"/>
-    private Result(TError? error)
+    private Result(TError error)
     {
-        IsSuccess = error != default;
+        IsSuccess = false;
         Error = error;
-        Value = default;
     }
     
     /// <inheritdoc cref="Result{TValue, TError}"/>
-    private Result(TValue value)
-        : this(default(TError))
+    private Result(TValue value) : this(default(TError)!)
     {
+        IsSuccess = true;
         Value = value;
     }
 
@@ -154,20 +152,36 @@ public readonly record struct Result<TValue, TError>
     {
         return IsSuccess ? onSuccess(Value) : onFailure(Error);
     }
-    
+
     /// <summary>
     /// Initialize the success result with value.
     /// </summary>
     /// <param name="value"> Value of an optional result.</param>
     /// <returns> Success result.</returns>
-    public static Result<TValue, TError> Ok(TValue value) => new(value);
-    
+    public static Result<TValue, TError> Ok(TValue value)
+    {
+        if (value == null)
+        {
+            throw new ArgumentNullException(nameof(value));
+        }
+
+        return new Result<TValue, TError>(value);
+    }
+
     /// <summary>
     /// Initialize the failure result.
     /// </summary>
     /// <param name="error"> Result error.</param>
     /// <returns> Failure result.</returns>
-    public static Result<TValue, TError> Fail(TError error) => new(error);
+    public static Result<TValue, TError> Fail(TError error)
+    {
+        if (error == null)
+        {
+            throw new ArgumentNullException(nameof(error));
+        }
+
+        return new Result<TValue, TError>(error);
+    }
 
     public static implicit operator Result<TValue, TError>(TValue value) => new(value);
     
