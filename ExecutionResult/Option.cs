@@ -104,13 +104,13 @@ public record class Option<TValue>
     /// <summary>
     /// Mapping values, depending on the result.
     /// </summary>
-    /// <param name="someMapping"> Mapping the value if the optional result has value.</param>
-    /// <param name="noneMapping"> Mapping the value if the optional result not contain value.</param>
+    /// <param name="some"> Mapping the value if the optional result has value.</param>
+    /// <param name="none"> Mapping the value if the optional result not contain value.</param>
     /// <typeparam name="TMappedValue"> Type of mapping result.</typeparam>
     /// <returns> Mapping result.</returns>
-    public TMappedValue Map<TMappedValue>(Func<TValue, TMappedValue> someMapping, Func<TMappedValue> noneMapping)
+    public TMappedValue Map<TMappedValue>(Func<TValue, TMappedValue> some, Func<TMappedValue> none)
     {
-        return HasValue ? someMapping(Value) : noneMapping();
+        return HasValue ? some(Value) : none();
     }
 
     /// <summary>
