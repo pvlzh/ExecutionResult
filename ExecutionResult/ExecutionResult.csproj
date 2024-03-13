@@ -5,12 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>12</LangVersion>
-    <Version>0.1.0</Version>
-    <Authors>pvl_zh</Authors>
-    <Description>A simple library that adds execution result types indicating successful or unsuccessful execution of the operation, instead of throwing exceptions.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>ExecutionResult</PackageId>
-    <PackageTags>ExecutionResult</PackageTags>
+    <Version>0.1.0</Version>
+    <Authors>pvlzh</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>A simple library that adds execution result types indicating successful or unsuccessful execution of the operation, instead of throwing exceptions.</Description>
+    <PackageTags>Result Results ResultType ExecutionResult Error</PackageTags>
     <PackageProjectUrl>https://github.com/pvlzh/ExecutionResult</PackageProjectUrl>
   </PropertyGroup>
 
