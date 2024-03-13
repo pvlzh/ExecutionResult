@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace ExecutionResult;
+namespace ExecutionResults;
 
 /// <summary>
 /// The result of the operation without value.

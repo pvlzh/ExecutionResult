@@ -1,4 +1,4 @@
-# ExecutionResult
+# ExecutionResults
 The dotnet library, which adds types of operation results and provides a convenient way to return an error instead of creating an exception.
 
 ## Introduction
@@ -7,14 +7,14 @@ The ExecutionResults library is designed to simplify error handling in your appl
 ## Installation
 
 ## Usage
-The ExecutionResult library introduces several result types that you can use to represent the outcome of an operation. These types include:
+The ExecutionResults library introduces several result types that you can use to represent the outcome of an operation. These types include:
 1. `Option<TValue>`
 2. `Result<TError>`
 3. `Result<TValue, TError>`
 
-To use these result types, you can include the ExecutionResult namespace in your code:
+To use these result types, you can include the ExecutionResults namespace in your code:
 ```csharp
-using ExecutionResult;
+using ExecutionResults;
 ```
 ### Using the `Option<TValue>` type
 The `Option<TValue>` type must be used when the method may not return a result, while not generating any errors.

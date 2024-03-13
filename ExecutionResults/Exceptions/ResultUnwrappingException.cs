@@ -1,4 +1,4 @@
-namespace ExecutionResult.Exceptions;
+namespace ExecutionResults.Exceptions;
 
 /// <summary>
 /// An exception that is thrown when unpacking the result.

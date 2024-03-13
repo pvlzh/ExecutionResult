@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using ExecutionResult.Exceptions;
+using ExecutionResults.Exceptions;
 
-namespace ExecutionResult;
+namespace ExecutionResults;
 
 /// <summary>
 /// The result of the operation with value.

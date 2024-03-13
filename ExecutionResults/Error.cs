@@ -1,4 +1,4 @@
-namespace ExecutionResult;
+namespace ExecutionResults;
 
 /// <summary>
 /// The basic abstract error type for the result.

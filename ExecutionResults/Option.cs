@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using ExecutionResult.Exceptions;
+using ExecutionResults.Exceptions;
 
-namespace ExecutionResult;
+namespace ExecutionResults;
 
 /// <summary>
 /// An optional result that does not contain an error.
