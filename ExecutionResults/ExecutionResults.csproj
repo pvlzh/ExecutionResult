@@ -14,6 +14,7 @@
     <Description>A simple library that adds execution result types indicating successful or unsuccessful execution of the operation, instead of throwing exceptions.</Description>
     <PackageTags>Result Results ResultType ExecutionResult Error</PackageTags>
     <PackageProjectUrl>https://github.com/pvlzh/ExecutionResult</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pvlzh/ExecutionResult</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

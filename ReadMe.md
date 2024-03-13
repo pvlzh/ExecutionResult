@@ -5,7 +5,7 @@ The dotnet library, which adds types of operation results and provides a conveni
 The ExecutionResults library is designed to simplify error handling in your applications by providing a set of result types and a convenient way to return errors without creating exceptions. This approach can help you better control your code and make it more reliable.
 
 ## Installation
-
+```dotnet add package ExecutionResults --version 0.1.0```
 ## Usage
 The ExecutionResults library introduces several result types that you can use to represent the outcome of an operation. These types include:
 1. `Option<TValue>`
